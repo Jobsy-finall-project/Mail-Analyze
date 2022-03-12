@@ -1,2 +1,53 @@
-this is a test
-just cheking
+
+Dear Chen,
+
+I have scheduled for you an Interview for the DevOps & CI Intern position.
+ 
+Date: Wednesday, April 7th
+Time: 14:00 IDT (local time in Israel)
+Interviewer: Genadi Chereshnya and Itzik Brown
+ 
+** Please reply back to confirm your attendance for the Interview.
+ 
+The interview is scheduled for 60 minutes and I would like to ask you to connect to the session via the following link: 
+ 
+meet.google.com/fdq-dxwa-tob
+ 
+How do I use Google Hangouts?
+
+Your calls will take place on Google Hangouts, a video communication tool that will connect you one-to-one with your mentor throughout the course.
+How to get set up
+
+Google Hangouts opens in a web browser so you don't have to download an app to use it on your computer. Use Google Chrome as your browser for Google Hangouts. 
+
+You can use Hangouts from an Android phone or iPhone (after downloading the app and signing in with a Google Account). However, we recommend that you join your calls from a computer to have the best experience. 
+
+If you are using headphones, please make sure they have a microphone built into them.
+How to test a call on Hangouts
+
+    To start testing a call on Hangouts, click this Mastered Hangouts test link.
+    Test that your microphone, webcam, and speakers are working properly. Click on the settings gear on the black bar across the top of the Hangout window. You may have to wiggle your mouse around the inside of the Hangout window to get the black bar to show up.     
+    Test your webcam. If you can see yourself on the screen, your webcam is working. If not, click on the camera in the drop-down menu (shown below) to select a different camera and try again.
+    Test your microphone. While speaking loudly near your mic, check to see if you have small green dots appear next to the microphone drop-down menu (shown below). If not, click on the microphone drop-down list to select a different mic and try again.
+    Test your speakers. Click on the Playtest sound link. If you can hear the ringing sound, your speakers are working correctly. If not, click on the speaker’s drop-down list to select different speakers and try again.
+
+If you were able to join the test video call and verify that your webcam, microphone, and speakers are working properly, then you are ready to participate in any Hangout session going forward. 
+How to join a call
+
+    Find a quiet place with a good internet connection where you won't be interrupted or distracted. 
+    Double-check that you've followed our advice on how to get set up as listed above.
+    A few minutes before your call, click the green "Start Hangout" button on your Mastered homepage.
+
+    Request to join the call. If you're not signed in with a Google Account at the time, you'll be asked to add your name.
+    Your mentor will accept your request and your call will begin.
+
+How to solve connection issues
+
+Show up 10 minutes early for your Hangout calls to make sure everything is working properly and to troubleshoot any last-minute problems that may come up. 
+
+Check out this advice from Google on how to fix audio and video problems so you know what to do if you experience them. 
+
+If you have issues with poor connection during your call, you can adjust the "bandwidth settings" at the top of your Hangouts browser. 
+
+ 
+Thank you
