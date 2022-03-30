@@ -13,6 +13,10 @@ def analyze(new_mail):
 
     print(f"accepted score: {accepted_score}")
     print(f"rejected score: {rejected_score}")
+    return {
+        "accepted_score": accepted_score,
+        "rejected_score": rejected_score
+    }
 
 
 def compere_to_model(model: dict, mail: dict):
@@ -26,7 +30,7 @@ def compere_to_model(model: dict, mail: dict):
 def count_mail_words(mail):
     words_in_file = {}
     for word in mail.strip().split(" "):
-        curr_word = re.sub("[.?!,]", "", word)
+        curr_word = re.sub("[.?!,]", "", word).strip().lower()
 
         if curr_word in words_in_file:
             words_in_file[curr_word] += 1
