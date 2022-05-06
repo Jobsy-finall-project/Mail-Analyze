@@ -3,7 +3,6 @@ import re
 
 
 def analyze(new_mail):
-    print(new_mail)
     mail_words = count_mail_words(new_mail)
     print(mail_words)
     accepted_model = json.load(open("accepted_model.json", mode="r"))

@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from Train import train
 from Analyze import analyze
+from text_extractor import extract_text
 
 app = Flask(__name__)
 train()
@@ -17,7 +18,9 @@ def hello_world():
 def analyze_request():
     request_data = request.get_json()
     print(request_data)
-    result = analyze(request_data["body"])
+    mail_text = extract_text(request_data["body"])
+    print(mail_text)
+    result = analyze(mail_text)
     res = ""
     if result["accepted_score"] > result["rejected_score"]:
         res = "accepted"
