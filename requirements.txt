@@ -6,3 +6,6 @@ Jinja2==3.1.2
 MarkupSafe==2.1.1
 Werkzeug==2.1.2
 beautifulsoup4==4.11.1
+PyPDF2==1.28.2
+docx2txt==0.8
+flasgger==0.9.5

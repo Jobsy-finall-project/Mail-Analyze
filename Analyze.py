@@ -3,27 +3,25 @@ import re
 
 
 def analyze(new_mail):
-    mail_words = count_mail_words(new_mail)
-    print(mail_words)
-    accepted_model = json.load(open("accepted_model.json", mode="r"))
-    accepted_score = compere_to_model(accepted_model, mail_words)
-    rejected_model = json.load(open("rejected_model.json", mode="r"))
-    rejected_score = compere_to_model(rejected_model, mail_words)
+    # mail_words = count_mail_words(new_mail)
+    # print(mail_words)
+    accepted_model = json.load(open("tag_pool.json", mode="r"))
+    output_tags = __compere_to_model(accepted_model, new_mail)
 
-    print(f"accepted score: {accepted_score}")
-    print(f"rejected score: {rejected_score}")
-    return {
-        "accepted_score": accepted_score,
-        "rejected_score": rejected_score
-    }
+    return output_tags
 
 
-def compere_to_model(model: dict, mail: dict):
-    score = 0
+def __compere_to_model(model: list, mail: str):
+    output = []
+    mail_words = mail.split(" ")
     for key in model:
-        if key in mail:
-            score += model[key]
-    return score
+        clean_key = key.strip().lower()
+        if len(clean_key.split(" ")) > 1:
+            if clean_key in mail:
+                output.append(key)
+        elif clean_key in mail_words:
+            output.append(key)
+    return output
 
 
 def count_mail_words(mail):
