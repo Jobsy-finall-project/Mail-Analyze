@@ -29,7 +29,7 @@ def __extract_text_pdf(data: str):
 
 def __extract_text_docx(data: str):
     byte_pdf = base64.b64decode(data)
-    with open("tmp.docx", "wb") as file_to_save:
+    with open("tmp.docx", "w") as file_to_save:
         file_to_save.write(byte_pdf)
     text = docx2txt.process("tmp.docx")
     return text
