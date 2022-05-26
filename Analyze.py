@@ -3,8 +3,6 @@ import re
 
 
 def analyze(new_mail):
-    # mail_words = count_mail_words(new_mail)
-    # print(mail_words)
     accepted_model = json.load(open("tag_pool.json", mode="r"))
     output_tags = __compere_to_model(accepted_model, new_mail)
 
@@ -13,11 +11,13 @@ def analyze(new_mail):
 
 def __compere_to_model(model: list, mail: str):
     output = []
+    mail = mail.strip().lower()
     mail_words = mail.split(" ")
+    clean_mail = re.sub("[.?!,]", "", mail)
     for key in model:
         clean_key = key.strip().lower()
         if len(clean_key.split(" ")) > 1:
-            if clean_key in mail:
+            if clean_key in clean_mail:
                 output.append(key)
         elif clean_key in mail_words:
             output.append(key)

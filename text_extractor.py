@@ -3,33 +3,21 @@ import os
 
 from PyPDF2 import PdfReader, PdfFileReader
 from docx2txt import docx2txt
+import fitz
 
 
 def __extract_text_pdf(data: str):
-    # byte_pdf = base64.b64decode(data)
-    # with open("tmp.pdf", "wb") as file_to_save:
-    #     file_to_save.write(byte_pdf)
-    # with open("tmp.pdf", "rb") as file_to_read:
-    #     pdfReader = PdfFileReader(file_to_read)
-    #     text = ''
-    #     for i in range(0, pdfReader.numPages):
-    #         # creating a page object
-    #         pageObj = pdfReader.getPage(i)
-    #         # extracting text from page
-    #         text = text + pageObj.extractText()
-    #     print(text)
-    reader = PdfReader("tmp.pdf")
     text = ""
-    for page in reader.pages:
-        text += page.extract_text()
-        text += "\n"
-    print(text)
+    with fitz.open(data) as doc:
+        for page in doc:
+            text += page.get_text()
+
     return text
 
 
 def __extract_text_docx(data: str):
     byte_pdf = base64.b64decode(data)
-    with open("tmp.docx", "w") as file_to_save:
+    with open("tmp.docx", "wb") as file_to_save:
         file_to_save.write(byte_pdf)
     text = docx2txt.process("tmp.docx")
     return text
@@ -62,7 +50,8 @@ def __extract_text_else(file_name: str):
 def extract_text(data: str, file_name: str):
     file_type = file_name.rsplit(".", 1)[-1].strip().lower()
     if file_type == "pdf":
-        res = __extract_text_pdf(data)
+        __save_locally(data, file_name)
+        res = __extract_text_pdf(file_name)
     elif file_type == "docx":
         res = __extract_text_docx(data)
     else:

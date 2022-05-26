@@ -9,3 +9,4 @@ beautifulsoup4==4.11.1
 PyPDF2==1.28.2
 docx2txt==0.8
 flasgger==0.9.5
+PyMuPDF==1.19.6

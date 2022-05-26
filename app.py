@@ -61,11 +61,11 @@ def analyze_request():
                   ['Ruby', 'Ruby on Rails', 'Rails']
         """
     request_data = request.get_json()
-    # print(request_data)
+    print("request data:", request_data["file"])
     mail_text = extract_text(data=request_data["file"], file_name=request_data["name"])
-    print(mail_text)
+    print("extracted text:", mail_text)
     result = analyze(mail_text)
-    print(result)
+    print("result text:", result)
     return jsonify(result)
 
 
