@@ -6,43 +6,50 @@ from docx2txt import docx2txt
 import fitz
 
 
-def __extract_text_pdf(data: str):
+def __extract_text_pdf(file_name: str):
+    print("analyzing PDF")
     text = ""
-    with fitz.open(data) as doc:
+    with fitz.open("tmpFiles/" + file_name) as doc:
         for page in doc:
             text += page.get_text()
 
+    os.remove("tmpFiles/" + file_name)
     return text
 
 
 def __extract_text_docx(data: str):
+    print("analyzing DOCX")
     byte_pdf = base64.b64decode(data)
-    with open("tmp.docx", "wb") as file_to_save:
+    with open("tmpFiles/tmp.docx", "wb") as file_to_save:
         file_to_save.write(byte_pdf)
-    text = docx2txt.process("tmp.docx")
+    text = docx2txt.process("tmpFiles/tmp.docx")
+    os.remove("tmpFiles/tmp.docx")
     return text
 
 
 def __save_locally(data: str, file_name: str):
+    print("analyzing something else")
     try:
-        # file_bytes = data.encode("utf-8")
         file_bytes = base64.b64encode(base64.b64decode(data))
-    except Exception:
+    except Exception as e:
+        print(e.args)
         file_bytes = ""
 
     if file_bytes is not "":
         print("writing binary")
-        with open(file_name, "wb") as file_to_save:
+        with open("tmpFiles/" + file_name, "wb") as file_to_save:
             decoded_file = base64.decodebytes(file_bytes)
             file_to_save.write(decoded_file)
     else:
         print("writing text")
-        with open(file_name, "w") as file_to_save:
+        with open("tmpFiles/" + file_name, "w") as file_to_save:
             file_to_save.write(data)
+
+    os.remove("tmpFiles/" + file_name)
 
 
 def __extract_text_else(file_name: str):
-    with open(file_name, "r") as file_to_read:
+    with open("tmpFiles/" + file_name, "r") as file_to_read:
         text = file_to_read.read()
     return text
 
