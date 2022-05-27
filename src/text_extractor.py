@@ -1,6 +1,6 @@
 import base64
 import os
-
+from uuid import uuid4
 import fitz
 from docx2txt import docx2txt
 
@@ -12,17 +12,17 @@ def __extract_text_pdf(file_name: str):
         for page in doc:
             text += page.get_text()
 
-    os.remove("tmpFiles/" + file_name)
+    # os.remove("tmpFiles/" + file_name)
     return text
 
 
-def __extract_text_docx(data: str):
+def __extract_text_docx(file_name: str):
     print("analyzing DOCX")
-    byte_pdf = base64.b64decode(data)
-    with open("tmpFiles/tmp.docx", "wb") as file_to_save:
-        file_to_save.write(byte_pdf)
-    text = docx2txt.process("tmpFiles/tmp.docx")
-    os.remove("tmpFiles/tmp.docx")
+    # byte_pdf = base64.b64decode(data)
+    # with open("tmpFiles/tmp.docx", "wb") as file_to_save:
+    #     file_to_save.write(byte_pdf)
+    text = docx2txt.process("tmpFiles/" + file_name)
+    # os.remove("tmpFiles/tmp.docx")
     return text
 
 
@@ -53,13 +53,16 @@ def __extract_text_else(file_name: str):
 
 def extract_text(data: str, file_name: str):
     file_type = file_name.rsplit(".", 1)[-1].strip().lower()
-    if file_type == "pdf":
-        __save_locally(data, file_name)
-        res = __extract_text_pdf(file_name)
-    elif file_type == "docx":
-        res = __extract_text_docx(data)
-    else:
-        __save_locally(data, file_name)
-        res = __extract_text_else(file_name)
-        os.remove(file_name)
+    file_name = str(uuid4()) + "-" + file_name
+
+    __save_locally(data, file_name)
+    match file_type:
+        case "pdf":
+            res = __extract_text_pdf(file_name)
+        case "docx":
+            res = __extract_text_docx(file_name)
+        case _:
+            res = __extract_text_else(file_name)
+
+    os.remove("tmpFiles/" + file_name)
     return res
