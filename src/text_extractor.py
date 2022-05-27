@@ -12,17 +12,12 @@ def __extract_text_pdf(file_name: str):
         for page in doc:
             text += page.get_text()
 
-    # os.remove("tmpFiles/" + file_name)
     return text
 
 
 def __extract_text_docx(file_name: str):
     print("analyzing DOCX")
-    # byte_pdf = base64.b64decode(data)
-    # with open("tmpFiles/tmp.docx", "wb") as file_to_save:
-    #     file_to_save.write(byte_pdf)
     text = docx2txt.process("tmpFiles/" + file_name)
-    # os.remove("tmpFiles/tmp.docx")
     return text
 
 
