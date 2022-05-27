@@ -1,9 +1,8 @@
 import base64
 import os
 
-from PyPDF2 import PdfReader, PdfFileReader
-from docx2txt import docx2txt
 import fitz
+from docx2txt import docx2txt
 
 
 def __extract_text_pdf(file_name: str):
@@ -44,8 +43,6 @@ def __save_locally(data: str, file_name: str):
         print("writing text")
         with open("tmpFiles/" + file_name, "w") as file_to_save:
             file_to_save.write(data)
-
-    os.remove("tmpFiles/" + file_name)
 
 
 def __extract_text_else(file_name: str):
