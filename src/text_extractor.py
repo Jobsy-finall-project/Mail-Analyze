@@ -29,7 +29,7 @@ def __save_locally(data: str, file_name: str):
         print(e.args)
         file_bytes = ""
 
-    if file_bytes is not "":
+    if file_bytes != "" and not file_name.endswith("txt"):
         print("writing binary")
         with open("tmpFiles/" + file_name, "wb") as file_to_save:
             decoded_file = base64.decodebytes(file_bytes)
