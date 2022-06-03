@@ -23,13 +23,10 @@ def __extract_text_docx(file_name: str):
 
 def __save_locally(data: str, file_name: str):
     print("analyzing something else")
-    try:
-        file_bytes = base64.b64encode(base64.b64decode(data))
-    except Exception as e:
-        print(e.args)
-        file_bytes = ""
 
-    if file_bytes != "" and not file_name.endswith("txt"):
+    if data.startswith("data:") and not file_name.endswith("txt"):
+        data_to_write = data.split(",", 1)[1]
+        file_bytes = base64.b64encode(base64.b64decode(data_to_write))
         print("writing binary")
         with open("tmpFiles/" + file_name, "wb") as file_to_save:
             decoded_file = base64.decodebytes(file_bytes)
@@ -51,13 +48,14 @@ def extract_text(data: str, file_name: str):
     file_name = str(uuid4()) + "-" + file_name
 
     __save_locally(data, file_name)
-    match file_type:
-        case "pdf":
-            res = __extract_text_pdf(file_name)
-        case "docx":
-            res = __extract_text_docx(file_name)
-        case _:
-            res = __extract_text_else(file_name)
-
-    os.remove("tmpFiles/" + file_name)
+    try:
+        match file_type:
+            case "pdf":
+                res = __extract_text_pdf(file_name)
+            case "docx":
+                res = __extract_text_docx(file_name)
+            case _:
+                res = __extract_text_else(file_name)
+    finally:
+        os.remove("tmpFiles/" + file_name)
     return res
