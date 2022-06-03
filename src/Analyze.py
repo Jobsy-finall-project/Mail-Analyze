@@ -4,6 +4,7 @@ from repo import tag_repo
 
 
 def analyze(new_cv):
+    print("analyzing")
     tag_pool = tag_repo.get_all()
     output_tags = __compere_to_model(tag_pool, new_cv)
 

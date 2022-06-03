@@ -6,7 +6,7 @@ from docx2txt import docx2txt
 
 
 def __extract_text_pdf(file_name: str):
-    print("analyzing PDF")
+    print("extracting PDF text")
     text = ""
     with fitz.open("tmpFiles/" + file_name) as doc:
         for page in doc:
@@ -16,7 +16,7 @@ def __extract_text_pdf(file_name: str):
 
 
 def __extract_text_docx(file_name: str):
-    print("analyzing DOCX")
+    print("extracting DOCX text")
     text = docx2txt.process("tmpFiles/" + file_name)
     return text
 
